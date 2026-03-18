@@ -50,3 +50,19 @@ int main() {
     }
 
     cin.ignore();
+    char plaintext[1024];
+    cout << "Nhap plaintext: ";
+    cin.getline(plaintext, 1024);
+
+    int msglen = strlen(plaintext);
+    int keylen = K.size();
+
+    // Khởi tạo S
+    for (int i = 0; i < N; i++) S[i] = i;
+
+    // KSA
+    int j = 0;
+    for (int i = 0; i < N; i++) {
+        j = (j + S[i] + K[i % keylen]) % N;
+        swap_int(S[i], S[j]);
+    }
