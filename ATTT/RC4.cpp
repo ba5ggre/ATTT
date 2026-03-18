@@ -66,3 +66,27 @@ int main() {
         j = (j + S[i] + K[i % keylen]) % N;
         swap_int(S[i], S[j]);
     }
+cout << "\n--- KET QUA MA HOA ---\n";
+    cout << "Ky tu goc | Ky tu ma | ASCII\n";
+    cout << "--------------------------------\n";
+
+    int i = 0;
+    j = 0;
+
+    for (int n = 0; n < msglen; n++) {
+        i = (i + 1) % N;
+        j = (j + S[i]) % N;
+        swap_int(S[i], S[j]);
+
+        int t = (S[i] + S[j]) % N;
+        int k = S[t];
+
+        unsigned char cipher = (unsigned char)plaintext[n] ^ k;
+
+        cout << plaintext[n] << "          | "
+             << (char)cipher << "         | "
+             << (int)cipher << endl;
+    }
+
+    return 0;
+}
